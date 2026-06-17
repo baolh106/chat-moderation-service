@@ -1,0 +1,7 @@
+from pydantic import BaseModel
+from typing import List, Dict
+
+class ModerationResult(BaseModel):
+    is_toxic: bool
+    confidence_score: float
+    details: List[Dict]
