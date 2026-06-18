@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from pydantic import ValidationError
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("uvicorn.error")
 
 async def http_exception_handler(request: Request, exc: HTTPException):
     """

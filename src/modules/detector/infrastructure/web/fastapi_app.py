@@ -1,11 +1,11 @@
 from fastapi import Depends, APIRouter
 from pydantic import BaseModel
-from modules.detector.domain.entities import ModerationResult
-from modules.detector.infrastructure.ai.nudenet_detector import NudeNetDetector
-from modules.detector.use_case.moderation import ScanImageUseCase
+from src.modules.detector.domain.entities import DetectionResult
+from src.modules.detector.infrastructure.ai.nudenet_detector import NudeNetDetector
+from src.modules.detector.use_case.detection import ScanImageUseCase
 from src.shared.middleware.validate_api_key import validate_api_key
 
-router = APIRouter(prefix="/api/v1", tags=["moderation"])
+router = APIRouter(prefix="/api/v1", tags=["detector"])
 
 class ImageRequest(BaseModel):
     image_url: str
@@ -14,7 +14,7 @@ def get_scan_image_use_case() -> ScanImageUseCase:
     detector = NudeNetDetector()
     return ScanImageUseCase(detector)
 
-@router.post("/moderate")
+@router.post("/detect")
 def scan_image_endpoint(
     request: ImageRequest,
     use_case: ScanImageUseCase = Depends(get_scan_image_use_case),

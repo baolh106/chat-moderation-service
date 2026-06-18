@@ -1,4 +1,4 @@
-from modules.key.domain.repositories import IServiceKeyRepository
+from src.modules.key.domain.repositories import IServiceKeyRepository
 
 class VerifyApiKeyUseCase:
     def __init__(self, repository: IServiceKeyRepository):

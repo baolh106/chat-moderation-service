@@ -12,5 +12,5 @@ class ServiceKeyRepository(IServiceKeyRepository):
             await self.mongodb_client.connect()
         
         return await self.mongodb_client.db[self.collection_name].find_one(
-            {"api_key": api_key, "is_active": True}
+            {"key": api_key, "is_active": True}
         )
