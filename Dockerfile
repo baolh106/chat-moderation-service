@@ -17,10 +17,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # 🚀 TỐI ƯU 1: Tách riêng việc copy requirements để tận dụng Docker Cache Layer
 COPY requirements.txt .
 
-# 🚀 TỐI ƯU 2: Sử dụng --mount=type=cache để giữ lại cache của pip, lần sau build siêu tốc
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install --no-cache-dir --user -r requirements.txt
-
+# 🚀 TỐI ƯU 2:
+RUN pip install --no-cache-dir --user -r requirements.txt
 
 # ================================================
 # Giai đoạn 2: Runtime image (Bản chạy chính thức trên Production)
